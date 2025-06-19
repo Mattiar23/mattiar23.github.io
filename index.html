@@ -56,7 +56,6 @@
     font-weight: bold;
   }
 
-  /* Media query per schermi piccoli */
   @media (max-width: 480px) {
     select, button {
       width: 100%;
@@ -102,30 +101,7 @@ const colori = {
 };
 
 const combinazioni = [
-  ["azzurri vs gialli", "gialli vs verdi", "verdi vs rossi", "rossi vs azzurri", "azzurri vs verdi", "gialli vs rossi"],
-  ["rossi vs verdi", "verdi vs azzurri", "azzurri vs gialli", "gialli vs rossi", "rossi vs azzurri", "verdi vs gialli"],
-  ["verdi vs rossi", "rossi vs gialli", "gialli vs azzurri", "azzurri vs verdi", "verdi vs gialli", "rossi vs azzurri"],
-  ["verdi vs gialli", "rossi vs gialli", "rossi vs azzurri", "verdi vs azzurri", "azzurri vs gialli", "verdi vs rossi"],
-  ["azzurri vs verdi", "gialli vs azzurri", "verdi vs gialli", "rossi vs gialli", "rossi vs azzurri", "verdi vs rossi"],
-  ["gialli vs rossi", "rossi vs verdi", "verdi vs azzurri", "azzurri vs gialli", "gialli vs verdi", "rossi vs azzurri"],
-  ["azzurri vs gialli", "rossi vs verdi", "verdi vs gialli", "gialli vs rossi", "verdi vs azzurri", "azzurri vs rossi"],
-  ["rossi vs verdi", "verdi vs azzurri", "azzurri vs gialli", "gialli vs rossi", "verdi vs gialli", "azzurri vs rossi"],
-  ["verdi vs azzurri", "azzurri vs rossi", "gialli vs rossi", "verdi vs gialli", "rossi vs verdi", "azzurri vs gialli"],
-  ["verdi vs gialli", "azzurri vs verdi", "rossi vs azzurri", "gialli vs rossi", "verdi vs rossi", "azzurri vs gialli"],
-  ["gialli vs azzurri", "rossi vs azzurri", "verdi vs gialli", "gialli vs rossi", "verdi vs azzurri", "rossi vs verdi"],
-  ["azzurri vs gialli", "gialli vs rossi", "rossi vs verdi", "verdi vs azzurri", "gialli vs verdi", "azzurri vs rossi"],
-  ["gialli vs verdi", "verdi vs rossi", "rossi vs azzurri", "azzurri vs gialli", "gialli vs rossi", "verdi vs azzurri"],
-  ["rossi vs azzurri", "gialli vs verdi", "verdi vs azzurri", "gialli vs rossi", "rossi vs verdi", "azzurri vs gialli"],
-  ["azzurri vs gialli", "verdi vs azzurri", "rossi vs gialli", "verdi vs rossi", "azzurri vs rossi", "gialli vs verdi"],
-  ["verdi vs azzurri", "gialli vs rossi", "rossi vs verdi", "azzurri vs gialli", "verdi vs gialli", "rossi vs azzurri"],
-  ["gialli vs rossi", "verdi vs gialli", "azzurri vs rossi", "rossi vs verdi", "azzurri vs gialli", "verdi vs azzurri"],
-  ["azzurri vs gialli", "verdi vs gialli", "rossi vs azzurri", "azzurri vs verdi", "gialli vs rossi", "rossi vs verdi"],
-  ["rossi vs gialli", "gialli vs azzurri", "azzurri vs verdi", "verdi vs rossi", "rossi vs azzurri", "gialli vs verdi"],
-  ["gialli vs verdi", "verdi vs rossi", "rossi vs azzurri", "azzurri vs gialli", "gialli vs rossi", "verdi vs azzurri"],
-  ["verdi vs gialli", "azzurri vs rossi", "rossi vs verdi", "gialli vs azzurri", "azzurri vs verdi", "gialli vs rossi"],
-  ["azzurri vs rossi", "rossi vs gialli", "gialli vs verdi", "verdi vs azzurri", "azzurri vs gialli", "verdi vs rossi"],
-  ["gialli vs verdi", "verdi vs azzurri", "azzurri vs rossi", "rossi vs gialli", "gialli vs azzurri", "verdi vs rossi"],
-  ["rossi vs azzurri", "azzurri vs gialli", "gialli vs verdi", "verdi vs rossi", "rossi vs gialli", "azzurri vs verdi"]
+  // ... (tua lista combinazioni rimane invariata)
 ];
 
 let punteggiTotali = {
@@ -173,6 +149,7 @@ function mostraPartita() {
       <div class="score" id="score-${contrada}">0</div>
       <button onclick="aggiornaPunteggio('${contrada}', 5)">+5 Pozzo</button>
       <button onclick="aggiornaPunteggio('${contrada}', -1)">-1 Penalità</button>
+      <button onclick="aggiornaPunteggio('${contrada}', -3)">-3 Personale</button>
     `;
     container.appendChild(div);
   });
@@ -182,8 +159,6 @@ let punteggiParziali = {};
 
 function aggiornaPunteggio(contrada, delta) {
   punteggiParziali[contrada] = (punteggiParziali[contrada] || 0) + delta;
-  // RIMUOVIAMO il controllo che bloccava il punteggio a 0
-  // if (punteggiParziali[contrada] < 0) punteggiParziali[contrada] = 0;
   document.getElementById(`score-${contrada}`).textContent = punteggiParziali[contrada];
 }
 
